@@ -47,3 +47,19 @@ $('.owl-carousel').owlCarousel({
     }
 })
 
+function searchShows(query) {
+    axios.get(`ttps://api.tvmaze.com/search/shows?q=${query}`)
+    .then(response => {
+      getFilms(response.data.map(item => item.show));
+    })
+  
+  }
+  const searchForm = document.getElementById("search-form")
+  searchForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const searchInput = document.getElementById("search-film")
+    const query = searchInput.value;
+    searchShows(query);
+  console.log(query)
+  
+  ;});
